@@ -251,12 +251,63 @@ h1 {
 .actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     white-space: nowrap;
 }
 
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
 .action-delete {
+    padding: 0;
+    border: 0;
+    background: transparent;
     color: #b42318;
+    font: inherit;
+    cursor: pointer;
+}
+
+.action-delete:hover {
+    color: #861b13;
+    text-decoration: underline;
+}
+
+.detail-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #e1e6ef;
+    border-radius: 10px;
+    background: #e9edf3;
+    box-shadow: 0 2px 8px rgb(23 32 51 / 4%);
+}
+
+.detail-item {
+    min-width: 0;
+    padding: 18px 20px;
+    background: #fff;
+}
+
+.detail-item dt {
+    margin-bottom: 7px;
+    color: #68758a;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.detail-item dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.detail-back {
+    margin-top: 20px;
 }
 
 .empty-state {
@@ -348,5 +399,9 @@ h1 {
 
     .form-panel {
         padding: 18px;
+    }
+
+    .detail-list {
+        grid-template-columns: 1fr;
     }
 }

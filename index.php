@@ -65,8 +65,15 @@ require __DIR__ . '/partials/header.php';
                                 <td><?= e(date('d M Y', strtotime($student['enrolled_on']))) ?></td>
                                 <td>
                                     <div class="actions">
+                                        <a href="show.php?id=<?= e($student['id']) ?>">View</a>
                                         <a href="edit.php?id=<?= e($student['id']) ?>">Edit</a>
-                                        <a class="action-delete" href="delete.php?id=<?= e($student['id']) ?>">Delete</a>
+                                        <form class="inline-form" method="post" action="delete.php"
+                                            data-confirm="<?= e('Delete ' . $student['first_name'] . ' ' . $student['last_name'] . '?') ?>"
+                                            onsubmit="return confirm(this.dataset.confirm)">
+                                            <input type="hidden" name="_token" value="<?= e(csrfToken()) ?>">
+                                            <input type="hidden" name="id" value="<?= e($student['id']) ?>">
+                                            <button class="action-delete" type="submit">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
