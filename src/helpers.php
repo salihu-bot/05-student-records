@@ -34,3 +34,21 @@ function getFlash(): ?array
 
     return $message;
 }
+
+function csrfToken(): string
+{
+    if (!isset($_SESSION['_csrf_token']) || !is_string($_SESSION['_csrf_token'])) {
+        $_SESSION['_csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+    return $_SESSION['_csrf_token'];
+}
+
+function hasValidCsrfToken(mixed $token): bool
+{
+    $sessionToken = $_SESSION['_csrf_token'] ?? null;
+
+    return is_string($token)
+        && is_string($sessionToken)
+        && hash_equals($sessionToken, $token);
+}
